@@ -1,5 +1,5 @@
-const SIGN_IN_LINK = "https://bridge.springmicro.com/sign-in";
-const REGISTER_LINK = "https://bridge.springmicro.com/onboarding/register";
+const SIGN_IN_LINK = "https://bridge.springmicrohost.com/sign-in";
+const REGISTER_LINK = "https://bridge.springmicrohost.com/onboarding/register";
 
 export const NAVBAR = {
   TEXT: {},
