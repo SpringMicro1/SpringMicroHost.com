@@ -98,8 +98,8 @@ export const FEATURES = [
 export const PRICING = [
   {
     name: "Personal",
-    price: "$3.00/mo",
-    popular: false,
+    price: "$2.95/mo",
+    popular: true,
     description: "All the basics for starting a single small website.",
     features: [
       "Single Website",
@@ -113,23 +113,23 @@ export const PRICING = [
       text: "Get Started",
     },
   },
-  {
-    name: "Pro",
-    price: "$4.17/mo",
-    popular: true,
-    description: "All the basics for starting/hosting up to 3 websites.",
-    features: [
-      "Everything in Personal",
-      "Multiple Websites",
-      "SSL Certificates",
-      "Personal Manager",
-      "Backups",
-    ],
-    action: {
-      href: REGISTER_LINK,
-      text: "Get Started",
-    },
-  },
+  // {
+  //   name: "Pro",
+  //   price: "$4.17/mo",
+  //   popular: true,
+  //   description: "All the basics for starting/hosting up to 3 websites.",
+  //   features: [
+  //     "Everything in Personal",
+  //     "Multiple Websites",
+  //     "SSL Certificates",
+  //     "Personal Manager",
+  //     "Backups",
+  //   ],
+  //   action: {
+  //     href: REGISTER_LINK,
+  //     text: "Get Started",
+  //   },
+  // },
   {
     name: "Enterprise",
     price: "Get a Quote",
