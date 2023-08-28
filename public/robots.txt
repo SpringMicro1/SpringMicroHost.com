@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://springmicrohost.vercel.app/sitemap-index.xml
+Sitemap: http://springmicrohost.com/sitemap-index.xml

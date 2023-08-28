@@ -5,6 +5,8 @@ import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 import Button from "@components/ui/button.astro";
 import Contactform from "@components/contactform.astro";
+import json from "../content/forms/contact.json";
+import JSONForm from "@components/form";
 ---
 
 <Layout title="Contact">
@@ -14,9 +16,9 @@ import Contactform from "@components/contactform.astro";
       <Fragment slot="desc">We are here to help.</Fragment>
     </Sectionhead>
 
-    <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
+    <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16 mb-2">
       <div>
-        <h2 class="font-medium text-2xl text-gray-800">Contact SpringMicroHost</h2>
+        <h2 class="font-medium text-2xl text-gray-800 mt-2">Contact SpringMicroHost</h2>
         <p class="text-lg leading-relaxed text-slate-500 mt-3">
           Have something to say? We are here to help.
         </p>
@@ -36,9 +38,18 @@ import Contactform from "@components/contactform.astro";
           </div>
         </div> -->
       </div>
-      <div>
-        <Contactform />
+      <div class="d-none">
+        <JSONForm json={json} env={Object.fromEntries(Object.entries(import.meta.env).filter(([k,v])=> k.indexOf("PUBLIC_") === 0))} client:load />
       </div>
     </div>
   </Container>
 </Layout>
+
+<script>
+  const btn = document.querySelector(".btn");
+  if (btn)
+  btn.className = "rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black text-white hover:bg-gray-800 border-2 border-transparent"
+const dNone = document.querySelector(".hidden");
+if (dNone)
+dNone.className = ""
+</script>
