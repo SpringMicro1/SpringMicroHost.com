@@ -48,18 +48,17 @@ export default function JSONForm({ json, env }) {
       env.PUBLIC_FORMS_API_URL &&
       env.PUBLIC_API_KEY
     ) {
-      const url = `${env.PUBLIC_FORMS_API_URL}/v1/forms/${json.jsonSchema["$id"]}/submit/data?callback-url=${env.PUBLIC_URL}/contact`;
       const formData = new FormData();
       formData.append("body", JSON.stringify(data.formData));
+      formData.append("x_api_key", env.PUBLIC_API_KEY);
+      const url = `${env.PUBLIC_FORMS_API_URL}/v1/forms/${json.jsonSchema["$id"]}/submit/data`;
       fetch(url, {
+        mode: "cors",
         method: "post",
         body: formData,
-        headers: {
-          "content-type": "multipart/form-data",
-          "x-api-key": env.PUBLIC_API_KEY,
-        },
       })
         .then((res) => {
+          console.log(res);
           setDisabled(true);
           setAlert({
             status: "success",
