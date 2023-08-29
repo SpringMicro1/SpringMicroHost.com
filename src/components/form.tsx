@@ -29,7 +29,6 @@ function GetAlertIcon(status: AlertStatus) {
 export default function JSONForm({ json, env }) {
   const [disabled, setDisabled] = React.useState(false);
   const [alert, setAlert] = React.useState<AlertType>();
-  console.log(env);
 
   function onSubmit(
     data: IChangeEvent<any, RJSFSchema, any>,
@@ -49,12 +48,14 @@ export default function JSONForm({ json, env }) {
       env.PUBLIC_FORMS_API_URL &&
       env.PUBLIC_API_KEY
     ) {
-      const url = `${env.PUBLIC_FORMS_API_URL}/v1/forms/${json.jsonSchema["$id"]}/submit?callback-url=${env.PUBLIC_URL}/contact`;
+      const url = `${env.PUBLIC_FORMS_API_URL}/v1/forms/${json.jsonSchema["$id"]}/submit/data?callback-url=${env.PUBLIC_URL}/contact`;
+      const formData = new FormData();
+      formData.append("body", JSON.stringify(data.formData));
       fetch(url, {
         method: "post",
-        body: JSON.stringify(data.formData),
+        body: formData,
         headers: {
-          "content-type": "application/json",
+          "content-type": "multipart/form-data",
           "x-api-key": env.PUBLIC_API_KEY,
         },
       })
