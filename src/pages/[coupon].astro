@@ -1,0 +1,10 @@
+---
+export const prerender = false
+const { coupon } = Astro.params;
+const href = `https://bridge.springmicrohost.com/code/${coupon}`;
+return Astro.redirect(href);
+---
+
+<html>
+  <p>Auto-redirection failed, click this link to redeem the code (if it exists): <a class="text-primary hover:underline" href={href}>{href}</a>.</p>
+</html>
