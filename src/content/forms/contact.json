@@ -1,7 +1,7 @@
 {
   "name": "Contact",
   "jsonSchema": {
-    "$id": "710c88c9-845c-4866-897f-1f21952686d6",
+    "$id": "1617d90c-625d-4e86-91a3-b6dae9c8802d",
     "type": "object",
     "properties": {
       "smforms-bot-field": {
@@ -31,17 +31,5 @@
   },
   "formData": {},
   "alerts": { "success": "Submission Received!" },
-  "notify": [
-    {
-      "method": "email",
-      "recipient": "kgibson@springmicro.com",
-      "details": {}
-    },
-
-    {
-      "method": "email",
-      "recipient": "dbuckley@springmicro.com",
-      "details": {}
-    }
-  ]
+  "notify": []
 }

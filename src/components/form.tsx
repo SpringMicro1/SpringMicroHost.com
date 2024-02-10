@@ -1,5 +1,5 @@
-import { IChangeEvent } from "@rjsf/core";
-import { RJSFSchema } from "@rjsf/utils";
+import type { IChangeEvent } from "@rjsf/core";
+import type { RJSFSchema } from "@rjsf/utils";
 import validator from "@rjsf/validator-ajv8";
 import { DaisyUIForm } from "smhost-template-forms";
 import { Alert } from "react-daisyui";
@@ -48,14 +48,18 @@ export default function JSONForm({ json, env }) {
       env.PUBLIC_FORMS_API_URL &&
       env.PUBLIC_API_KEY
     ) {
-      const formData = new FormData();
-      formData.append("body", JSON.stringify(data.formData));
-      formData.append("x_api_key", env.PUBLIC_API_KEY);
-      const url = `${env.PUBLIC_FORMS_API_URL}/v1/forms/${json.jsonSchema["$id"]}/submit/data`;
+      // const formData = new FormData();
+      // formData.append("body", JSON.stringify(data.formData));
+      // formData.append("x_api_key", env.PUBLIC_API_KEY);
+      const body = JSON.stringify({ data: data.formData });
+      const url = `${env.PUBLIC_FORMS_API_URL}/api/forms/submissions/${json.jsonSchema["$id"]}`;
       fetch(url, {
         mode: "cors",
         method: "post",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body,
       })
         .then((res) => {
           console.log(res);
@@ -81,6 +85,10 @@ export default function JSONForm({ json, env }) {
     }
   }
 
+  const formData = Object.fromEntries(
+    new URLSearchParams(window.location.search).entries()
+  );
+
   return (
     <>
       <DaisyUIForm
@@ -89,6 +97,7 @@ export default function JSONForm({ json, env }) {
         validator={validator}
         onSubmit={onSubmit}
         disabled={disabled}
+        formData={formData}
       />
       {alert && (
         <Alert {...alert} icon={GetAlertIcon(alert.status)} className="mt-4">

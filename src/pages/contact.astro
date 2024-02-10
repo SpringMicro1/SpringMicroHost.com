@@ -4,7 +4,6 @@ import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 import Button from "@components/ui/button.astro";
-import Contactform from "@components/contactform.astro";
 import json from "../content/forms/contact.json";
 import JSONForm from "@components/form";
 ---
@@ -18,28 +17,23 @@ import JSONForm from "@components/form";
 
     <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16 mb-2">
       <div>
-        <h2 class="font-medium text-2xl text-gray-800 mt-2">Contact SpringMicroHost</h2>
+        <h2 class="font-medium text-2xl text-gray-800 mt-2">
+          Contact SpringMicroHost
+        </h2>
         <p class="text-lg leading-relaxed text-slate-500 mt-3">
           Have something to say? We are here to help.
         </p>
-        <!-- <div class="mt-5">
-          <div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:map-marker" />
-            <span></span>
-          </div><div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:envelope" /><a
-              href="kgibson@springmicro.com"
-              >kgibson@springmicro.com</a
-            >
-          </div><div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:phone" /><a
-              href="tel:+1 (555) 555 5555">+1 (555) 555 5555</a
-            >
-          </div>
-        </div> -->
       </div>
       <div class="d-none">
-        <JSONForm json={json} env={Object.fromEntries(Object.entries(import.meta.env).filter(([k,v])=> k.indexOf("PUBLIC_") === 0))} client:load />
+        <JSONForm
+          json={json}
+          env={Object.fromEntries(
+            Object.entries(import.meta.env).filter(
+              ([k, v]) => k.indexOf("PUBLIC_") === 0,
+            ),
+          )}
+          client:only
+        />
       </div>
     </div>
   </Container>
@@ -48,8 +42,8 @@ import JSONForm from "@components/form";
 <script>
   const btn = document.querySelector(".btn");
   if (btn)
-  btn.className = "rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black text-white hover:bg-gray-800 border-2 border-transparent"
-const dNone = document.querySelector(".hidden");
-if (dNone)
-dNone.className = ""
+    btn.className =
+      "rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black text-white hover:bg-gray-800 border-2 border-transparent";
+  const dNone = document.querySelector(".hidden");
+  if (dNone) dNone.className = "";
 </script>
