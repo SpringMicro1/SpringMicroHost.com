@@ -43,14 +43,9 @@ export default function JSONForm({ json, env }) {
         status: "success",
         message: json.alerts["success"] ?? "Submission received!",
       });
-    } else if (
-      env.PUBLIC_URL &&
-      env.PUBLIC_FORMS_API_URL &&
-      env.PUBLIC_API_KEY
-    ) {
+    } else if (env.PUBLIC_URL && env.PUBLIC_FORMS_API_URL) {
       // const formData = new FormData();
       // formData.append("body", JSON.stringify(data.formData));
-      // formData.append("x_api_key", env.PUBLIC_API_KEY);
       const body = JSON.stringify({ data: data.formData });
       const url = `${env.PUBLIC_FORMS_API_URL}/api/forms/submissions/${json.jsonSchema["$id"]}`;
       fetch(url, {
