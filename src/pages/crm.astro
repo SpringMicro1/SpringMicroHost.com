@@ -2,21 +2,20 @@
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
-import Pricing from "@components/pricing.astro";
-import { PRICING } from "config";
+import PricingComponent from "@components/pricing.astro";
+import { PRICING_CRM } from "config";
 ---
 
-<Layout title="Pricing">
+<Layout title="CRM Plans">
   <Container>
     <Sectionhead>
-      <Fragment slot="title">Pricing</Fragment>
+      <Fragment slot="title">CRM Plans</Fragment>
       <Fragment slot="desc"
         >Simple & predictable pricing. No asterisks or surprises.</Fragment
       >
     </Sectionhead>
 
-    <div class={`grid md:grid-cols-${PRICING.length} gap-10 mx-auto max-w-screen-lg mt-12`}>
-      {PRICING.map((item) => <Pricing plan={item} />)}
-    </div>
+    <PricingComponent PRICING={PRICING_CRM} />
+
   </Container>
 </Layout>

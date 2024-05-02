@@ -1,0 +1,21 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import PricingComponent from "@components/pricing.astro";
+import { PRICING_HOSTING } from "config";
+---
+
+<Layout title="Hosting Plans">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Hosting Plans</Fragment>
+      <Fragment slot="desc"
+        >Get a free quote on a custom built website. We've developed a website editing tool for you to build your own website as soon as we release the website editor from Beta Testing.</Fragment
+      >
+    </Sectionhead>
+
+    <PricingComponent PRICING={PRICING_HOSTING} />
+
+  </Container>
+</Layout>

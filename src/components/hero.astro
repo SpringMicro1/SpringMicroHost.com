@@ -1,16 +1,41 @@
 ---
 import heroImage from "assets/spring.png";
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import Link from "@components/ui/link.astro";
 import { Icon } from "astro-icon";
-import {HERO} from "config";
-const {TEXT, LINKS} = HERO;
+import { HERO } from "config";
+const { TEXT, LINKS, APPS } = HERO;
 ---
 
 <main
   class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
-  <div class="py-6 md:order-1 hidden md:block">
-    <Image src={heroImage} alt="mountain spring landscape" loading="eager" class:list={["max-[800px]:w-screen", "w-[500px]"]} />
+  <div class="py-6 order-1 block">
+    <div class="border border-solid border-neutral-200 rounded py-8 px-12">
+      <div class="uppercase">Featured apps</div>
+      <ul
+        style="height: auto;">
+        {APPS.map(({color, icon, title, button, text})=>(
+          <li class="zh-main-app zh-crm zapp-show mt-10">
+            <span class="">
+              <div class="flex flex-row items-center mb-2">
+                <Icon class={`w-12 mr-3`} name={icon} />
+                <label class="text-lg flex items-center mr-3" >{title}</label>
+                <div class="flex ml-auto">
+                  <Link
+                    href={button.href}
+                    style="outline"
+                    class="border-primary text-primary"
+                    rel="noopener">
+                      {button.text.split(" ").map((text, index)=>index===0 ? <>{text}</> : (<>&nbsp;{text}</>))}
+                  </Link>
+                </div>
+              </div>
+              <small class="col-span-3 flex items-center">{text}</small>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
   <div>
     <h1
@@ -20,13 +45,19 @@ const {TEXT, LINKS} = HERO;
     <p class="text-lg mt-4 text-slate-600 max-w-xl">
       {TEXT.DESCRIPTION}
     </p>
-    <div class="mt-6 flex flex-col sm:flex-row gap-3">
+    <div class="ml-auto mt-6 flex flex-col sm:flex-row gap-3">
       <Link
         href={LINKS.ACTION.href}
-        class="flex gap-1 items-center justify-center"
+        class="ml-auto flex gap-1 items-center justify-center"
         rel="noopener">
         {LINKS.ACTION.text}
       </Link>
     </div>
+    <Image
+      src={heroImage}
+      alt="mountain spring landscape"
+      loading="eager"
+      class:list={["max-[800px]:w-screen", "w-[500px]", "pt-8"]}
+    />
   </div>
 </main>
