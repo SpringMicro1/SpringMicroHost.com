@@ -5,6 +5,8 @@ import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
 
+import node from "@astrojs/node";
+
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
@@ -15,5 +17,9 @@ export default defineConfig({
       noExternal: ["react-icons"],
     },
   },
-  adapter: vercel(),
+  adapter: import.meta.env.DEV
+    ? node({
+        mode: "standalone",
+      })
+    : vercel(),
 });

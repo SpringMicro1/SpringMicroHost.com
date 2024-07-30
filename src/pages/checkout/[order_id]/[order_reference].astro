@@ -1,0 +1,30 @@
+---
+export const prerender = false;
+import { Checkout } from "@springmicro/cart";
+// 1/KZXujqrqCInL?invoice_id=1
+// order_id/order_reference_id?invoice_id=optional[int]
+const request = Astro.request;
+const { order_id, order_reference } = Astro.params;
+const reqUrl = new URL(request.url);
+const invoiceId = reqUrl.searchParams.get("invoice_id");
+const apiBaseUrl = import.meta.env.API_URL;
+// get data
+// GET, POST
+// 1/KZXujqrqCInL?invoice_id=1&payment_provider=env.PAYMENT_PROVIDER
+const serverUrl = new URL(
+  request.url.replace(reqUrl.origin, import.meta.env.API_URL + "/api/ecommerce")
+);
+serverUrl.searchParams.append(
+  "payment_provider",
+  import.meta.env.PAYMENT_PROVIDER
+);
+const res = await fetch(serverUrl);
+const order = await res.json();
+---
+
+<Checkout
+  client:only="react"
+  invoiceId={invoiceId}
+  order={order}
+  apiBaseUrl={apiBaseUrl}
+/>
